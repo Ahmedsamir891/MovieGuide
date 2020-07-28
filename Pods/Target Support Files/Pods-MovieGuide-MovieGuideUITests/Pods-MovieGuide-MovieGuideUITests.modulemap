@@ -1,0 +1,6 @@
+framework module Pods_MovieGuide_MovieGuideUITests {
+  umbrella header "Pods-MovieGuide-MovieGuideUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
