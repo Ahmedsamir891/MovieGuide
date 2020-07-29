@@ -12,6 +12,8 @@ protocol RatingPopupView: ViperView {
     // TODO: Declare view methods
     
     func didGetSuccessRatingReponse(withRateValue value: String)
+    func didGetFailureRatingReponse()
+
 }
 
 protocol RatingPopupPresentation: ViperPresenter {

@@ -34,7 +34,8 @@ class RatingPopupPresenter {
                 }
                 
             }) { (error) in
-                
+                self.view?.didGetFailureRatingReponse()
+
             }
         }
     }
@@ -47,7 +48,7 @@ class RatingPopupPresenter {
                 self.view?.didGetSuccessRatingReponse(withRateValue: "\(rateValue)")
             }
         }) { (error) in
-            
+            self.view?.didGetFailureRatingReponse()
         }
     }
 }

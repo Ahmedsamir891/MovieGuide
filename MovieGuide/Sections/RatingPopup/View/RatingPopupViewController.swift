@@ -42,6 +42,11 @@ class RatingPopupViewController: BaseViewController {
 }
 
 extension RatingPopupViewController: RatingPopupView {
+    func didGetFailureRatingReponse() {
+        self.dismiss(animated: true, completion: nil)
+    
+    }
+    
     func didGetSuccessRatingReponse(withRateValue value: String) {
         self.dismiss(animated: true) {
             self.delegate?.didDismissViewContollerWithRatingValue(value)
