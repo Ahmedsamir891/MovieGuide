@@ -17,7 +17,7 @@ import UIKit
     private var bgView: UIView?
     private var shouldShowFullScreen = false
     var indicatorColor: UIColor = .black
-    var bgColor: UIColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.3294729313)
+    var bgColor: UIColor = .clear
     
     @objc static var sharedInstance: ProgressIndicator = {
         var sharedIndicator = ProgressIndicator()

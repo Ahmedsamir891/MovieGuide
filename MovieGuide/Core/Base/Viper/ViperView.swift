@@ -12,19 +12,15 @@ import Foundation
 protocol ViperView: class {
     func showLoading()
     func hideLoading()
-
+    
 }
 
 extension ViperView where Self: BaseViewController {
     func showLoading() {
-        DispatchQueue.main.async {
-         ProgressIndicator.shared().show()
-        }
+        ProgressIndicator.shared().show()
     }
-
+    
     func hideLoading() {
-        DispatchQueue.main.async {
-         ProgressIndicator.shared().hide()
-        }
+        ProgressIndicator.shared().hide()
     }
 }

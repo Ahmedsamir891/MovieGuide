@@ -15,6 +15,7 @@ class BaseRowModel: NSObject {
     var rowTitle: String = ""
     var rowHeight: CGFloat = 0.0
     var rowWidth: CGFloat = 0.0
+    var indexPath: IndexPath?
     var delegate: Any?
 }
 

@@ -17,4 +17,8 @@ extension UINavigationController {
          self.tabBarItem.imageInsets =  UIEdgeInsets(top: 10, left: 0, bottom: 6, right: 0)
          self.tabBarItem.title = title
      }
+    
+    func navigateToViewController(viewController: UIViewController){
+        self.pushViewController(viewController, animated: true)
+    }
 }

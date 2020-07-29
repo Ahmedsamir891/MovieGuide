@@ -22,7 +22,7 @@ enum Environment {
     var headers: [String: String] {
         switch self {
         case .production:
-            return ["Content-Type": "application/json", "Accept" : "application/json"]
+            return ["Content-Type": "application/json;charset=utf-8"]
         }
     }
     
@@ -45,12 +45,20 @@ enum Environment {
 struct EndPoints {
     
     //MARK: - base Url
-
+    
     static let baseURL = Environment.production.baseURL
     
     
-    // MARK: - Movie nowPlaying EndPoint
+    // MARK: - Movie EndPoints
     static let MovieEndPoint = "movie"
     static let movieNowPlaying = "\(MovieEndPoint)/now_playing"
+    static let movieDetails = "\(MovieEndPoint)/"
+    
+    static let rating = "\(MovieEndPoint)/movie_id/rating"
+
+    // MARK: - Authentication EndPoints
+    
+    static let AuthenticationEndPoint = "authentication"
+    static let guestSession = "\(AuthenticationEndPoint)/guest_session/new"
     
 }

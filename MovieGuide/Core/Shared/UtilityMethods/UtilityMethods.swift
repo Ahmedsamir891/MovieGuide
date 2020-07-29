@@ -13,10 +13,12 @@ class UtilityMethods {
     static func getFormatedData(dateString date: String, sourceFormat: String, targetFormat: String) -> (dateString : String, date : Date){
         let dateFormatterGet = DateFormatter()
         dateFormatterGet.dateFormat = sourceFormat
-        
+        dateFormatterGet.timeZone = TimeZone(identifier: "UTC")
+
         let dateFormatterPrint = DateFormatter()
         dateFormatterPrint.dateFormat = targetFormat
         dateFormatterPrint.locale = Locale(identifier: "en_US")
+
         let gregianCal = Calendar(identifier: .gregorian)
         dateFormatterPrint.calendar = gregianCal
         

@@ -7,7 +7,7 @@
 //
 
 import UIKit
-//import Kingfisher
+import Kingfisher
 
 extension UIImageView {
     
@@ -18,5 +18,14 @@ extension UIImageView {
         self.layer.masksToBounds = true
     }
     
- 
+    
+    func setImageWithUrlString(_ urlString: String?, defaultImage: String? = "") {
+        if let url = urlString, let imageURL = URL(string: url) {
+            self.kf.setImage(with: imageURL)
+        }
+        else{
+            self.image = UIImage(named: defaultImage ?? "")
+        }
+    }
+    
 }

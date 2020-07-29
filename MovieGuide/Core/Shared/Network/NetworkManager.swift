@@ -88,7 +88,7 @@ class NetworkManager  {
                     failureBlock(errorModel)
                     return;
                 }
-                
+
                 switch response.result {
                 case .success :
                     let decoder = JSONDecoder()

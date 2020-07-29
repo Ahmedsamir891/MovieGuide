@@ -22,20 +22,42 @@ extension CALayer {
 }
 
 extension UIView {
-    class func fromNib<T: UIView>() -> T {
-        return Bundle.main.loadNibNamed(String(describing: T.self), owner: nil, options: nil)![0] as! T
+    
+    @IBInspectable var cornerRadius: CGFloat{
+        set {
+            return layer.cornerRadius = newValue
+        }
+        
+        get {
+            return layer.cornerRadius
+        }
     }
     
-    func roundCorners(_ corners: UIRectCorner, radius: CGFloat) {
-        if #available(iOS 11.0, *) {
-            clipsToBounds = true
-            layer.cornerRadius = radius
-            layer.maskedCorners = CACornerMask(rawValue: corners.rawValue)
-        } else {
-            let path = UIBezierPath(roundedRect: bounds, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
-            let mask = CAShapeLayer()
-            mask.path = path.cgPath
-            layer.mask = mask
+    @IBInspectable var borderColor: UIColor{
+        set {
+            return layer.borderColor = newValue.cgColor
         }
+        
+        get {
+            return UIColor(cgColor: layer.borderColor!)
+        }
+    }
+    
+    
+    @IBInspectable var borderWidth: CGFloat{
+        set {
+            return layer.borderWidth = newValue
+        }
+        
+        get {
+            return layer.borderWidth
+        }
+    }
+    
+    func styleView(borderColor: UIColor, borderWitdh: CGFloat = 1.0, cornerRadius: CGFloat = 0.0 ) {
+        clipsToBounds = true
+        layer.borderColor = borderColor.cgColor
+        layer.borderWidth = borderWitdh
+        layer.cornerRadius = cornerRadius
     }
 }

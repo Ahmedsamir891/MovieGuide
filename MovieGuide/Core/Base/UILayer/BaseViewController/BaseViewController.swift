@@ -21,14 +21,14 @@ class BaseViewController: UIViewController {
     
     // MARK: - data Source
     
-    func setUpTableViewDataSource(dataSource: [BaseRowModel], delegate: BaseDataSourceDelegate, tableView: UITableView) {
+    func setUpTableViewDataSource(dataSource: [BaseRowModel], delegate: BaseDataSourceDelegate?, tableView: UITableView) {
         self.dataSource = BaseTableViewDataSource(dataSource: dataSource, delegate: delegate)
         tableView.dataSource = self.dataSource
         tableView.delegate = self.dataSource
         tableView.reloadData()
     }
     
-    func setUpTableViewSectionsDataSource(dataSource: [BaseSectionModel], delegate: BaseDataSourceDelegate, tableView: UITableView) {
+    func setUpTableViewSectionsDataSource(dataSource: [BaseSectionModel], delegate: BaseDataSourceDelegate?, tableView: UITableView) {
         self.dataSource = BaseTableViewDataSource(dataSourceWithSection: dataSource, delegate: delegate)
         tableView.dataSource = self.dataSource
         tableView.delegate = self.dataSource

@@ -8,9 +8,13 @@
 
 import Foundation
 import Alamofire
-
+import UIKit
 enum APIRouter: URLRequestConvertible {
     case nowPlaying(page: Int)
+    case movieDetails(movieId: Int, movieMoreDetails:String)
+    case createGuestSession
+    
+    case rateMovie(movieId: Int, sessionId:String, value: Float)
     
     // MARK: - HTTPMethod
     
@@ -19,8 +23,33 @@ enum APIRouter: URLRequestConvertible {
         case .nowPlaying:
             return .get
             
+        case .movieDetails:
+            return .get
+            
+        case .createGuestSession:
+            return .get
+            
+        case .rateMovie:
+            return .post
+            
         }
     }
+    
+    // MARK: - Parameters
+     
+     var parameters: Parameters? {
+         switch self {
+         case .nowPlaying:
+             return nil
+         case .movieDetails:
+             return nil
+         case .createGuestSession:
+             return nil
+         case .rateMovie(_, _, let value):
+            return ["value":value]
+         }
+     }
+     
     
     // MARK: - Path
     var url : URL {
@@ -35,21 +64,39 @@ enum APIRouter: URLRequestConvertible {
             ]
             return urlComponents.url!
             
+            
+        case .movieDetails(let movieId, let movieMoreDetails):
+            
+            var urlComponents = URLComponents(string: Environment.production.baseURL + EndPoints.movieDetails + "\(movieId)")!
+            urlComponents.queryItems = [
+                URLQueryItem(name: "api_key", value: Environment.production.apiKey),
+                URLQueryItem(name: "language", value:"en-US"),
+                URLQueryItem(name: "append_to_response", value:movieMoreDetails)
+                
+            ]
+            return urlComponents.url!
+            
+        case .createGuestSession:
+            
+            var urlComponents = URLComponents(string: Environment.production.baseURL + EndPoints.guestSession)!
+            urlComponents.queryItems = [
+                URLQueryItem(name: "api_key", value: Environment.production.apiKey)
+            ]
+            return urlComponents.url!
+            
+        case .rateMovie(let movieId,let sessionId, _):
+            
+            var urlComponents = URLComponents(string: Environment.production.baseURL + EndPoints.MovieEndPoint + "/\(movieId)/rating")!
+            urlComponents.queryItems = [
+                URLQueryItem(name: "api_key", value: Environment.production.apiKey),
+                URLQueryItem(name: "guest_session_id", value: sessionId)
+            ]
+            return urlComponents.url!
+            
         }
-        
-        
         
     }
     
-    
-    // MARK: - Parameters
-    
-    var parameters: Parameters? {
-        switch self {
-        case .nowPlaying:
-            return nil
-        }
-    }
     
     var encoding : ParameterEncoding {
         switch self {
@@ -75,10 +122,10 @@ enum APIRouter: URLRequestConvertible {
                 throw AFError.parameterEncodingFailed(reason: .jsonEncodingFailed(error: error))
             }
         }
-        
+
         return urlRequest
         
-        //        return try encoding.encode(urlRequest, with: parameters)
+            //return try encoding.encode(urlRequest, with: parameters)
     }
     
 }

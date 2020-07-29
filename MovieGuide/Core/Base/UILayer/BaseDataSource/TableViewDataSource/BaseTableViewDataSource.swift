@@ -17,7 +17,7 @@ class BaseTableViewDataSource: NSObject, UITableViewDataSource, UITableViewDeleg
     
     // MARK: - Methods
     
-    init(dataSource: [BaseRowModel]?, delegate: BaseDataSourceDelegate) {
+    init(dataSource: [BaseRowModel]?, delegate: BaseDataSourceDelegate?) {
         if let object = dataSource {
             tableViewItems = object
             dataSourceDelegate = delegate
@@ -27,7 +27,7 @@ class BaseTableViewDataSource: NSObject, UITableViewDataSource, UITableViewDeleg
     
     
     
-    init(dataSourceWithSection: [BaseSectionModel]?, delegate: BaseDataSourceDelegate) {
+    init(dataSourceWithSection: [BaseSectionModel]?, delegate: BaseDataSourceDelegate?) {
         if let object = dataSourceWithSection {
             tableViewSectionItems = object
             dataSourceDelegate = delegate
@@ -87,7 +87,8 @@ class BaseTableViewDataSource: NSObject, UITableViewDataSource, UITableViewDeleg
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var item: BaseRowModel = BaseRowModel()
-                
+                item.indexPath = indexPath
+
         if tableViewSectionItems.count > 0 {
             item = tableViewSectionItems[indexPath.section].rowItems[indexPath.row]
         } else {
