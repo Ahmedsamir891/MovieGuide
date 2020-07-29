@@ -19,13 +19,11 @@ class RatingPopupPresenter {
     
     
     private func createSessionFromWebService(movieId: Int, rateValue:Float){
-        //"2020-07-30 03:16:46
-//        if let session = SessionStateSaver.getSession(){
-//            let date = UtilityMethods.getFormatedData(dateString: session.expiresAt!, sourceFormat: "yyyy-MM-dd HH:mm:ss", targetFormat: "yyyy-MM-dd HH:mm:ss").date
-//
-//            rateMovideByIdFromWebService(movieId, sessionId: session.guestSessionId.asStringOrEmpty(), rateValue: rateValue)
-//        }
-//        else{
+        if let session = SessionStateSaver.getSession(){
+            
+            rateMovideByIdFromWebService(movieId, sessionId: session.guestSessionId.asStringOrEmpty(), rateValue: rateValue)
+        }
+        else{
             services.ceateGuestSession(completionHandler: { (response) in
                 
                 if let success = response.success, success{
@@ -38,7 +36,7 @@ class RatingPopupPresenter {
             }) { (error) in
                 
             }
-        //}
+        }
     }
     
     

@@ -303,10 +303,10 @@
                                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="qw0-xZ-3S3">
                                                                     <rect key="frame" x="0.0" y="0.0" width="206.5" height="54"/>
                                                                     <subviews>
-                                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="star" translatesAutoresizingMaskIntoConstraints="NO" id="49K-PJ-Wi1">
+                                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star" translatesAutoresizingMaskIntoConstraints="NO" id="49K-PJ-Wi1">
                                                                             <rect key="frame" x="0.0" y="0.0" width="206.5" height="33"/>
                                                                         </imageView>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" ambiguous="YES" text="3.4" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g35-9L-s96">
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="3.4" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g35-9L-s96">
                                                                             <rect key="frame" x="0.0" y="36" width="206.5" height="18"/>
                                                                             <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="15"/>
                                                                             <color key="textColor" name="PrimaryColor"/>
@@ -329,15 +329,15 @@
                                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="Vxo-Zi-zqU">
                                                                     <rect key="frame" x="0.0" y="0.0" width="206.5" height="54"/>
                                                                     <subviews>
-                                                                        <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aEU-l4-Z7C">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="206.5" height="43"/>
+                                                                        <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aEU-l4-Z7C">
+                                                                            <rect key="frame" x="0.0" y="0.0" width="206.5" height="33"/>
                                                                             <state key="normal" image="rateUs"/>
                                                                             <connections>
                                                                                 <action selector="didSelectRateButtonAction:" destination="dsW-51-awv" eventType="touchUpInside" id="MoJ-0M-5Iy"/>
                                                                             </connections>
                                                                         </button>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" ambiguous="YES" text="Rate this" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c7V-Ab-6FU">
-                                                                            <rect key="frame" x="0.0" y="46" width="206.5" height="8"/>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Rate this" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c7V-Ab-6FU">
+                                                                            <rect key="frame" x="0.0" y="36" width="206.5" height="18"/>
                                                                             <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="15"/>
                                                                             <color key="textColor" name="PrimaryColor"/>
                                                                             <nil key="highlightedColor"/>
@@ -531,9 +531,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jji-t0-kmV" customClass="UIControl">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jji-t0-kmV" customClass="UIControl">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <action selector="dismissViewController" destination="i0e-Xw-ZbW" eventType="touchUpInside" id="s3i-ZZ-yCr"/>
                                 </connections>
@@ -545,32 +545,44 @@
                                         <rect key="frame" x="0.0" y="0.0" width="314" height="150"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Soe-G1-MPA">
-                                                <rect key="frame" x="0.0" y="0.0" width="314" height="28"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="314" height="40"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="28" id="IT0-zp-Rgd"/>
+                                                    <constraint firstAttribute="height" constant="40" id="IT0-zp-Rgd"/>
                                                 </constraints>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WY6-B7-pWe" customClass="CosmosView" customModule="Cosmos">
-                                                <rect key="frame" x="0.0" y="28" width="314" height="71"/>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bNb-0h-emo">
+                                                <rect key="frame" x="0.0" y="40" width="314" height="59"/>
+                                                <subviews>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WY6-B7-pWe" customClass="CosmosView" customModule="Cosmos">
+                                                        <rect key="frame" x="10" y="0.0" width="294" height="59"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="totalStars">
+                                                                <integer key="value" value="10"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="starSize">
+                                                                <real key="value" value="25"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="emptyBorderWidth">
+                                                                <real key="value" value="1"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="rating">
+                                                                <real key="value" value="3.5"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="fillMode">
+                                                                <integer key="value" value="2"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </view>
+                                                </subviews>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="totalStars">
-                                                        <integer key="value" value="10"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="starSize">
-                                                        <real key="value" value="27"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="emptyBorderWidth">
-                                                        <real key="value" value="1"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="rating">
-                                                        <real key="value" value="3.5"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="fillMode">
-                                                        <integer key="value" value="2"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
+                                                <constraints>
+                                                    <constraint firstItem="WY6-B7-pWe" firstAttribute="leading" secondItem="bNb-0h-emo" secondAttribute="leading" constant="10" id="IMH-vr-3cv"/>
+                                                    <constraint firstItem="WY6-B7-pWe" firstAttribute="top" secondItem="bNb-0h-emo" secondAttribute="top" id="Lxk-ip-lLg"/>
+                                                    <constraint firstAttribute="bottom" secondItem="WY6-B7-pWe" secondAttribute="bottom" id="MMj-LO-gys"/>
+                                                    <constraint firstAttribute="trailing" secondItem="WY6-B7-pWe" secondAttribute="trailing" constant="10" id="QVG-Xl-HKe"/>
+                                                </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8gj-cY-0Zk">
                                                 <rect key="frame" x="0.0" y="99" width="314" height="1"/>
