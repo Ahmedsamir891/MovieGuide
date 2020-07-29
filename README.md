@@ -14,7 +14,7 @@ Demo application is to allow customers to discover now plyaing movies and add mo
 ## Features
 
 - [x] Show list of now playing movies sorted alphapectically.
-- [x] Add Movie to Favorite
+- [x] Add Movie to Favorite [Feature implement locally without depending on API]
 - [x] Browse favorite list
 - [x] Browse Movie details 
 - [x] Show recommneded movies and casting for each movie
