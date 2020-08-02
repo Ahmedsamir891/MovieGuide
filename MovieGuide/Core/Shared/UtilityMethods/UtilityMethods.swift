@@ -18,6 +18,7 @@ class UtilityMethods {
         let dateFormatterPrint = DateFormatter()
         dateFormatterPrint.dateFormat = targetFormat
         dateFormatterPrint.locale = Locale(identifier: "en_US")
+        dateFormatterPrint.timeZone = .current
 
         let gregianCal = Calendar(identifier: .gregorian)
         dateFormatterPrint.calendar = gregianCal

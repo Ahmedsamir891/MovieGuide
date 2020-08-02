@@ -16,13 +16,36 @@ class RatingPopupPresenter {
     var router: RatingPopupWireframe?
     let services = RatingPopupServices()
     
-    
-    
-    private func createSessionFromWebService(movieId: Int, rateValue:Float){
-        view?.showLoading()
+    /// Check guest session if it is expired or not
+    private func  checkSessionValidity() -> GuestSessionResponse?{
         if let session = SessionStateSaver.getSession(){
             
-            rateMovideByIdFromWebService(movieId, sessionId: session.guestSessionId.asStringOrEmpty(), rateValue: rateValue)
+            let sessionExpiryDate = UtilityMethods.getFormatedData(dateString: session.expiresAt.asStringOrEmpty(), sourceFormat: "yyyy-MM-dd HH:mm:ss Z", targetFormat: "yyyy-MM-dd H:mm:ss").date
+            
+            if  sessionExpiryDate.isInPast{
+                return nil
+            }
+            else{
+                return session
+            }
+        }
+        return nil
+    }
+    
+    
+    
+    /// Check if session is valid and not expired, then get session from user default else create guest session from web service
+    
+    /// - Parameters:
+    ///   - movieId: id used to rate movie
+    ///   - rateValue: movie rate to pass to webservice
+    func getGuestSessionFromWebService(movieId: Int, rateValue:Float){
+        
+        
+        view?.showLoading()
+        
+        if let validSession = checkSessionValidity(){
+            self.rateMovideByIdFromWebService(movieId, sessionId: validSession.guestSessionId.asStringOrEmpty(), rateValue: rateValue)
         }
         else{
             services.ceateGuestSession(completionHandler: { (response) in
@@ -47,7 +70,7 @@ class RatingPopupPresenter {
             
             self.view?.hideLoading()
             self.view?.didGetSuccessRatingReponse(withRateValue: "\(Int(rateValue))")
-
+            
         }) { (error) in
             self.view?.hideLoading()
             self.view?.didGetFailureRatingReponse()
@@ -59,6 +82,6 @@ class RatingPopupPresenter {
 extension RatingPopupPresenter: RatingPopupPresentation {
     
     func rateMovieById(_ movidId: Int?, rateValue: Float){
-        createSessionFromWebService(movieId: movidId.asIntOrEmpty(), rateValue: rateValue)
+        getGuestSessionFromWebService(movieId: movidId.asIntOrEmpty(), rateValue: rateValue)
     }
 }

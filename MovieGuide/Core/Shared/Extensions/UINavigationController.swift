@@ -2,8 +2,8 @@
 //  UINavigationController.swift
 //  Smiles
 //
-//  Created by Usman Tarar on 25/03/2020.
-//  Copyright © 2020 Usman Tarar. All rights reserved.
+//  Created by Ahmed samir on 25/03/2020.
+//  Copyright © 2020 Ahmed samir. All rights reserved.
 //
 
 import UIKit

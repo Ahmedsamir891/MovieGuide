@@ -2,8 +2,8 @@
 //  Date+Extension.swift
 //  Esaad
 //
-//  Created by Usman Tarar on 11/15/18.
-//  Copyright © 2020 Usman Tarar. All rights reserved.
+//  Created by Ahmed samir on 11/15/18.
+//  Copyright © 2020 Ahmed samir. All rights reserved.
 //
 
 import Foundation

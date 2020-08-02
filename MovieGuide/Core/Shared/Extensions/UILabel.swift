@@ -2,8 +2,8 @@
 //  UILabel.swift
 //  Smiles
 //
-//  Created by Usman Tarar on 01/10/2020.
-//  Copyright © 2020 UsmanTarar. All rights reserved.
+//  Created by Ahmed samir on 01/10/2020.
+//  Copyright © 2020 Ahmed samir. All rights reserved.
 //
 
 import UIKit

@@ -31,16 +31,5 @@ extension UITableView {
         }
         return cell
     }
-    
-    
-    public func reload(_ indices: [Int], section: Int = 0, animation: UITableView.RowAnimation = .automatic) {
-        guard !indices.isEmpty else { return }
-        
-        let indexPaths = indices.map { IndexPath(row: $0, section: section) }
-        
-        beginUpdates()
-        reloadRows(at: indexPaths, with: animation)
-        endUpdates()
-    }
 }
 
