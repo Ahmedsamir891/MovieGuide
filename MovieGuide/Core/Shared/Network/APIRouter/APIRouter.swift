@@ -36,20 +36,20 @@ enum APIRouter: URLRequestConvertible {
     }
     
     // MARK: - Parameters
-     
-     var parameters: Parameters? {
-         switch self {
-         case .nowPlaying:
-             return nil
-         case .movieDetails:
-             return nil
-         case .createGuestSession:
-             return nil
-         case .rateMovie(_, _, let value):
-            return ["value":value]
-         }
-     }
-     
+    
+    var parameters: Parameters? {
+        switch self {
+        case .nowPlaying:
+            return nil
+        case .movieDetails:
+            return nil
+        case .createGuestSession:
+            return nil
+        case .rateMovie(_, _, let value):
+            return RatingMovieRequest(value: value).dictionary
+        }
+    }
+    
     
     // MARK: - Path
     var url : URL {
@@ -122,10 +122,8 @@ enum APIRouter: URLRequestConvertible {
                 throw AFError.parameterEncodingFailed(reason: .jsonEncodingFailed(error: error))
             }
         }
-
-        return urlRequest
         
-            //return try encoding.encode(urlRequest, with: parameters)
+        return urlRequest
     }
     
 }

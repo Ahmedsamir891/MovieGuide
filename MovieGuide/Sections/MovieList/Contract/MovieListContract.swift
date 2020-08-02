@@ -17,7 +17,7 @@ protocol MovieListView: ViperView {
     
     
     /// Function to return 
-    /// - Parameter text: <#text description#>
+    /// - Parameter text: return error text
     func didGetMoviesListFailureResponse(error text : String)
     
 }

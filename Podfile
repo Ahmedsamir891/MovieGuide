@@ -10,6 +10,7 @@ target 'MovieGuide' do
   pod 'Alamofire'
   pod 'Kingfisher'
   pod 'Cosmos', '~> 22.1'
+
   target 'MovieGuideTests' do
     inherit! :search_paths
     # Pods for testing

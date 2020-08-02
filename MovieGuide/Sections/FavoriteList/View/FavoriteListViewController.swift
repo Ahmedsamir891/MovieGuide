@@ -36,6 +36,8 @@ class FavoriteListViewController: BaseViewController {
 }
 
 extension FavoriteListViewController: FavoriteListView {
+
+    
     func refreshTableView() {
         presenter?.viewWillAppear()
         

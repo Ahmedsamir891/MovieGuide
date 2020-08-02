@@ -18,13 +18,13 @@ extension UIViewController {
     static var storyboardID: String {
         return "\(self)"
     }
-
+    
     // MARK: - Handler method
     // instatiate UIViewController instance
     static func instantiate(fromAppStoryboard appStoryboard: AppStoryboard) -> Self {
         return appStoryboard.viewController(viewControllerClass: self)
     }
-
+    
     // MARK: enum
     // Storyboard name
     enum AppStoryboard: String {
@@ -33,17 +33,17 @@ extension UIViewController {
         var instance: UIStoryboard {
             return UIStoryboard(name: rawValue, bundle: Bundle.main)
         }
-
+        
         func viewController<T: UIViewController>(viewControllerClass: T.Type) -> T {
             let storyboardID = (viewControllerClass as UIViewController.Type).storyboardID
             return instance.instantiateViewController(withIdentifier: storyboardID) as! T
         }
-
+        
         func initialViewController() -> UIViewController? {
             return instance.instantiateInitialViewController()
         }
     }
-
+    
     func dismissMe(completion: ((Bool) -> Void)? = nil) {
         if let navigationViewController = self.navigationController {
             if navigationViewController.viewControllers.count >= 1 {
@@ -57,31 +57,37 @@ extension UIViewController {
         }
         completion?(true)
     }
-
+    
     class func loadFromNib<T: UIViewController>() -> T {
         return T(nibName: String(describing: self), bundle: nil)
     }
-
+    
     fileprivate func dismissPushedController() {
         _ = navigationController?.popViewController(animated: true)
     }
-
+    
     fileprivate func dismissPresentedController(completion: ((Bool) -> Void)? = nil) {
         dismiss(animated: true, completion: { () -> Void in
             completion?(true)
         })
     }
-
+    
     func showAlertWith(message: String, title: String = "", completion: ((UIAlertAction) -> Void)? = nil) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let OKAction = UIAlertAction(title: "YES", style: .default, handler: completion)
-        alertController.addAction(OKAction)
-        let cancelAction = UIAlertAction(title: "CANCEL", style: .cancel, handler: completion)
-        alertController.addAction(cancelAction)
-
+        if let completion = completion{
+            let OKAction = UIAlertAction(title: "YES", style: .default, handler: completion)
+            alertController.addAction(OKAction)
+            let cancelAction = UIAlertAction(title: "CANCEL", style: .cancel, handler: completion)
+            alertController.addAction(cancelAction)
+        }
+        else{
+            let OKAction = UIAlertAction(title: "Ok", style: .default, handler: completion)
+            alertController.addAction(OKAction)
+        }
+        
         present(alertController, animated: true, completion: nil)
     }
-
+    
     func popBack(_ nb: Int) {
         if let viewControllers: [UIViewController] = self.navigationController?.viewControllers {
             guard viewControllers.count < nb else {
@@ -90,7 +96,7 @@ extension UIViewController {
             }
         }
     }
-
+    
     func topmostViewController() -> UIViewController {
         if let navigationVC = self as? UINavigationController,
             let topVC = navigationVC.topViewController {
@@ -116,11 +122,11 @@ extension UIViewController {
         tap.cancelsTouchesInView = false
         view.addGestureRecognizer(tap)
     }
-
+    
     @objc func dismissKeyboard() {
         view.endEditing(true)
     }
-
+    
     /// pop back to specific viewcontroller
     func popBack<T: UIViewController>(toControllerType: T.Type) {
         if var viewControllers: [UIViewController] = self.navigationController?.viewControllers {

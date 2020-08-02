@@ -12,6 +12,11 @@ protocol RatingDetailsCellDelegate: class{
     func didSelectRateButtonActions()
 }
 
+struct RatingDetails {
+    var movieRate: Float?
+    var userRate: String?
+}
+
 class RatingDetailsTableViewCell: BaseTableViewCell {
     
     
@@ -42,20 +47,37 @@ class RatingDetailsTableViewCell: BaseTableViewCell {
     
     
     override func updateCell(rowModel: BaseRowModel) {
-        if let averageRate = rowModel.rowValue as? Float{
+        if let ratingDetails = rowModel.rowValue as? RatingDetails{
             
-            averageRateLabel.text = "\(averageRate)"
-            
-            if let delegate = rowModel.delegate as? RatingDetailsCellDelegate {
-                cellDelegate = delegate
+            if let userRate = ratingDetails.userRate, !userRate.isEmpty{
+                userRateLabel.text = "\(userRate)/10 \n Your rating"
+                
+                UIView.animate(withDuration: 0.1, animations: {
+                    
+                    self.userRateLabel.transform = self.transform.scaledBy(x: 1.5, y: 1.5)
+                    
+                }, completion: { _ in
+                    UIView.animate(withDuration: 0.1, animations: {
+                        self.userRateLabel.transform = CGAffineTransform.identity
+                    })
+                })
             }
+            else{
+                userRateLabel.text = "Rate this!"
+            }
+            
+            cellDelegate = rowModel.delegate as? RatingDetailsCellDelegate
+            
+            averageRateLabel.text = "\(ratingDetails.movieRate.asFloatOrEmpty())/10"
+            
+            
         }
     }
     
-    static func rowModel(model: Float, delegate: RatingDetailsCellDelegate) -> BaseRowModel {
+    static func rowModel(model: RatingDetails ,delegate: RatingDetailsCellDelegate?) -> BaseRowModel {
         let rowModel = BaseRowModel()
         rowModel.rowCellIdentifier = "RatingDetailsTableViewCell"
-         rowModel.rowHeight = UITableView.automaticDimension
+        rowModel.rowHeight = UITableView.automaticDimension
         rowModel.rowValue = model
         rowModel.delegate = delegate
         return rowModel

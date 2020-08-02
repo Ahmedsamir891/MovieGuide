@@ -11,40 +11,67 @@ import UIKit
 import Cosmos
 class RatingPopupViewController: BaseViewController {
     
-    @IBOutlet weak var ratingView: CosmosView!
-    
-    weak var delegate: RatingPopupViewControllerDelegate?
-    //    @IBOutlet weak var placeholderView: UIView!
-    
     // MARK: Properties
     
-    var movieId: Int?
-    var voteAverage: Float?
+    @IBOutlet weak var ratingView: CosmosView!
     
+    @IBOutlet weak var moviePosterImageView: UIImageView!
+    
+    @IBOutlet weak var ratingQuestionLabel: UILabel!
+    
+    @IBOutlet weak var ratingNumberLabel: UILabel!
+
+    
+    weak var delegate: RatingPopupViewControllerDelegate?
+    
+    var movieDetails: MovieBelongsToCollection?
+    
+    var lastUserRating: String?
+
     var presenter: RatingPopupPresentation?
     
     // MARK: Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        ratingView.rating = Double(voteAverage.asFloatOrEmpty())
+        
+        setUpViewUI()
     }
     
+    func setUpViewUI(){
+        moviePosterImageView.setImageWithUrlString(movieDetails?.moviePoster, defaultImage: "moviePlaceHolder")
+        
+        ratingQuestionLabel.text = "How Would you rate \(movieDetails?.name ?? "this movie")?"
+        
+        ratingView.rating = Double(lastUserRating ?? "0")!
+        self.ratingNumberLabel.text = lastUserRating.asStringOrEmpty()
+        
+        ratingView.didTouchCosmos = { rating in
+            self.ratingNumberLabel.text = "\(Int(rating))"
+        }
+
+    }
+    
+    //MARK:-  Button actions
     
     @IBAction func didSelectRateButtonAction(){
-        presenter?.rateMovieById(movieId.asIntOrEmpty(), rateValue: Float(ratingView.rating))
+        presenter?.rateMovieById(movieDetails?.id.asIntOrEmpty(), rateValue: Float(ratingView.rating))
         
     }
     
     @IBAction func dismissViewController(){
-        self.dismissMe()
+        self.dismiss(animated: true, completion: nil)
     }
 }
 
 extension RatingPopupViewController: RatingPopupView {
     func didGetFailureRatingReponse() {
-        self.dismiss(animated: true, completion: nil)
-    
+        
+         self.dismiss(animated: true) {
+           self.delegate?.didDismissViewContollerWithRatingValue("0")
+
+        }
+        
     }
     
     func didGetSuccessRatingReponse(withRateValue value: String) {
@@ -53,7 +80,4 @@ extension RatingPopupViewController: RatingPopupView {
         }
     }
     
-    
-    
-    // TODO: implement view output methods
 }

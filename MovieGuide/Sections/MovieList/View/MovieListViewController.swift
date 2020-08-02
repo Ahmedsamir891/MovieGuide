@@ -22,21 +22,16 @@ class MovieListViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        presenter?.viewDidLoad()
         setUpViewUI()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        
-        moviesListTableView.reloadData()
+        DispatchQueue.main.async {
+            self.presenter?.viewDidLoad()
+        }
     }
     
     //MARK:- helper methods
     
     func setUpViewUI(){
         moviesListTableView.registerCellFromNib(MovieTableViewCell.self, withIdentifier: String(describing: MovieTableViewCell.self))
-        
-
     }
 }
 
@@ -49,6 +44,5 @@ extension MovieListViewController: MovieListView {
     func didGetMoviesListFailureResponse(error text: String) {
         //Show Error
     }
-    
     
 }

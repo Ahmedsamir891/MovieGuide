@@ -70,7 +70,7 @@ class MovieListPresenter {
 extension MovieListPresenter: MovieListPresentation {
     
     
-    /// Call method in ViewDidLoad
+    /// Call method in viewWillAppear
     func viewDidLoad() {
         getNowPlayingMovingFromWebService()
     }

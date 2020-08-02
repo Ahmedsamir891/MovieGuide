@@ -26,27 +26,11 @@ class NetworkManager  {
     
     private func getAlamofireManager(timeout : Double) -> Session  {
         
-//        let configuration = URLSessionConfiguration.default
-//        configuration.timeoutIntervalForRequest = 60
-//        let delegate = Session.default.delegate
-
-
-//        let manager = Session(configuration: configuration, delegate: delegate, startRequestsImmediately: false, cachedResponseHandler: nil)
         let configuration = URLSessionConfiguration.af.default
+        configuration.timeoutIntervalForRequest = 60
         configuration.allowsCellularAccess = false
-
-         manager = Session(configuration: configuration)
         
-//        let rootQueue = DispatchQueue(label: "org.alamofire.customQueue")
-//        let queue = OperationQueue()
-//        queue.maxConcurrentOperationCount = 1
-//        queue.underlyingQueue = rootQueue
-//        let delegate = SessionDelegate()
-//        let configuration = URLSessionConfiguration.af.default
-//        let urlSession = URLSession(configuration: configuration,
-//                                    delegate: delegate,
-//                                    delegateQueue: queue)
-//        manager = Session(session: urlSession, delegate: delegate, rootQueue: rootQueue)
+        manager = Session(configuration: configuration)
         
         return manager
     }
@@ -80,15 +64,20 @@ class NetworkManager  {
                     failureBlock(errorModel)
                     return
                 }
+                print()
                 
-                if response.response?.statusCode != 200
+                //                switch response.response?.status {
+                //
+                //                }
+                
+                if response.response?.status != .success
                 {
                     let errorModel = ErrorCodeConfiguration()
                     errorModel.errorDescriptionEn = "Something went wrong!"
                     failureBlock(errorModel)
                     return;
                 }
-
+                
                 switch response.result {
                 case .success :
                     let decoder = JSONDecoder()
@@ -107,4 +96,16 @@ class NetworkManager  {
             }
         }
     }
+}
+
+extension HTTPURLResponse {
+    
+    var status: HTTPStatusCode.ResponseType? {
+        return HTTPStatusCode(rawValue: statusCode)?.responseType
+    }
+    
+    //    var responseType: HTTPStatusCode.ResponseType? {
+    //        return HTTPStatusCode(rawValue: statusCode)
+    //       }
+    
 }

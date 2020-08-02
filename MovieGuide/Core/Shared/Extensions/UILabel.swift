@@ -9,22 +9,7 @@
 import UIKit
 
 extension UILabel {
-    func setAttributedText(firstStringText: String = "", firstStringColor: UIColor = UIColor.black, size1: CGFloat = 20, secondStringText: String = "", secondStringColor: UIColor = UIColor.black, size2: CGFloat = 20) {
-        let strComplete = "\(firstStringText) \(secondStringText)"
-        
-        let attributedString = NSMutableAttributedString(string: strComplete)
-        
-        attributedString.addAttribute(.foregroundColor, value: firstStringColor, range: (strComplete as NSString).range(of: firstStringText))
-        
-        attributedString.addAttribute(.font, value: UIFont.appRegularFont(withSize: size1), range: (strComplete as NSString).range(of: firstStringText))
-        
-        attributedString.addAttribute(.foregroundColor, value: secondStringColor, range: (strComplete as NSString).range(of: secondStringText))
-        
-        attributedString.addAttribute(.font, value: UIFont.appBoldFont(withSize: size2), range: (strComplete as NSString).range(of: secondStringText))
-        
-        self.attributedText = attributedString
-    }
-    
+   
     @IBInspectable
     var letterSpace: CGFloat {
         set {

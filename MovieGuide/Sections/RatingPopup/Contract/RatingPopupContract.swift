@@ -19,7 +19,7 @@ protocol RatingPopupView: ViperView {
 protocol RatingPopupPresentation: ViperPresenter {
     // TODO: Declare presentation methods
     
-    func rateMovieById(_ movidId: Int, rateValue: Float)
+    func rateMovieById(_ movidId: Int?, rateValue: Float)
 }
 
 protocol RatingPopupWireframe: ViperRouter {

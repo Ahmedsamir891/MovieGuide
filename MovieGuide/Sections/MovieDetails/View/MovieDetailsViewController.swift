@@ -15,17 +15,18 @@ class MovieDetailsViewController: BaseViewController {
     @IBOutlet var movieDetailsTableView: UITableView!
     
     var movieId: Int?
-
-
+    
+    
     var presenter: MovieDetailsPresentation?
     
     // MARK: Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        DispatchQueue.main.async {
+            self.presenter?.getMovieDetailsbyId(self.movieId.asIntOrEmpty())
+        }
         
-        presenter?.getMovieDetailsbyId(movieId.asIntOrEmpty())
-
     }
 }
 

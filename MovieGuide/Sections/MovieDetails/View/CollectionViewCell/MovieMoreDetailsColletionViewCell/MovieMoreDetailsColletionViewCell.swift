@@ -16,8 +16,6 @@ class MovieMoreDetailsColletionViewCell: BaseCollectionViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     
     
-    
-    
     override func updateCell(rowModel: BaseRowModel) {
         if let cast = rowModel.rowValue as? MovieCastCrew{
             
@@ -35,8 +33,6 @@ class MovieMoreDetailsColletionViewCell: BaseCollectionViewCell {
     static func rowMovieCastCrewModel(model: MovieCastCrew) -> BaseRowModel {
         let rowModel = BaseRowModel()
         rowModel.rowCellIdentifier = "MovieMoreDetailsColletionViewCell"
-        rowModel.rowHeight = 300
-        rowModel.rowWidth = 131
         rowModel.rowValue = model
         return rowModel
     }
@@ -44,8 +40,6 @@ class MovieMoreDetailsColletionViewCell: BaseCollectionViewCell {
     static func rowMovieModel(model: MoviesList) -> BaseRowModel {
         let rowModel = BaseRowModel()
         rowModel.rowCellIdentifier = "MovieMoreDetailsColletionViewCell"
-        rowModel.rowHeight = 300
-        rowModel.rowWidth = 131
         rowModel.rowValue = model
         return rowModel
     }

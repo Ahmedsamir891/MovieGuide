@@ -19,6 +19,7 @@ class RatingPopupPresenter {
     
     
     private func createSessionFromWebService(movieId: Int, rateValue:Float){
+        view?.showLoading()
         if let session = SessionStateSaver.getSession(){
             
             rateMovideByIdFromWebService(movieId, sessionId: session.guestSessionId.asStringOrEmpty(), rateValue: rateValue)
@@ -34,8 +35,8 @@ class RatingPopupPresenter {
                 }
                 
             }) { (error) in
+                self.view?.hideLoading()
                 self.view?.didGetFailureRatingReponse()
-
             }
         }
     }
@@ -44,19 +45,20 @@ class RatingPopupPresenter {
     func rateMovideByIdFromWebService(_ movieId: Int, sessionId: String, rateValue: Float){
         self.services.rateMovieById(movieId, sessionId: sessionId, rateValue: rateValue, completionHandler: { (rateReponse) in
             
-            if let statusCode = rateReponse.statusCode, statusCode == 1{
-                self.view?.didGetSuccessRatingReponse(withRateValue: "\(rateValue)")
-            }
+            self.view?.hideLoading()
+            self.view?.didGetSuccessRatingReponse(withRateValue: "\(Int(rateValue))")
+
         }) { (error) in
+            self.view?.hideLoading()
             self.view?.didGetFailureRatingReponse()
+            
         }
     }
 }
 
 extension RatingPopupPresenter: RatingPopupPresentation {
-    // TODO: implement presentation methods
     
-    func rateMovieById(_ movidId: Int, rateValue: Float){
-        createSessionFromWebService(movieId: movidId, rateValue: rateValue)
+    func rateMovieById(_ movidId: Int?, rateValue: Float){
+        createSessionFromWebService(movieId: movidId.asIntOrEmpty(), rateValue: rateValue)
     }
 }

@@ -9,17 +9,7 @@
 import Foundation
 import UIKit
 
-extension CALayer {
-    var borderUIColor: UIColor {
-        set {
-            self.borderColor = newValue.cgColor
-        }
-        
-        get {
-            return UIColor(cgColor: self.borderColor!)
-        }
-    }
-}
+
 
 extension UIView {
     
@@ -52,12 +42,5 @@ extension UIView {
         get {
             return layer.borderWidth
         }
-    }
-    
-    func styleView(borderColor: UIColor, borderWitdh: CGFloat = 1.0, cornerRadius: CGFloat = 0.0 ) {
-        clipsToBounds = true
-        layer.borderColor = borderColor.cgColor
-        layer.borderWidth = borderWitdh
-        layer.cornerRadius = cornerRadius
     }
 }

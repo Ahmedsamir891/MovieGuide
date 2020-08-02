@@ -22,7 +22,8 @@ enum Environment {
     var headers: [String: String] {
         switch self {
         case .production:
-            return ["Content-Type": "application/json;charset=utf-8"]
+            return ["Content-Type": "application/json;charset=utf-8",
+                    "Accept":"application/json"]
         }
     }
     

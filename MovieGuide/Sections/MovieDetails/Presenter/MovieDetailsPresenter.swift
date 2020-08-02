@@ -17,29 +17,30 @@ class MovieDetailsPresenter {
     let services = MovieDetailsServices()
     
     private var movieId: Int?
-    private var voteAverage: Float?
-    private var movieList: MoviesList?
-
+    
+    var movieDetails : MovieDetailsResponse?
+    
+    var userRate : String?
+    
     //MARK:- Get movies detail
     func getMovieDetailsByIdFromWebService(movieId: Int){
         view?.showLoading()
         
         services.getMovieDetailsById(movieId, completionHandler: { (response) in
             
-             self.view?.hideLoading()
+            self.view?.hideLoading()
+            self.movieDetails = response
             
             self.movieId = response.id
             self.setUpMoviesDetailsRowModels(movieDetails: response)
             
         }) { (error) in
             self.view?.hideLoading()
-            
         }
     }
     
     
     func setUpMoviesDetailsRowModels(movieDetails: MovieDetailsResponse){
-        
         
         var rowModels = [BaseRowModel]()
         
@@ -53,8 +54,7 @@ class MovieDetailsPresenter {
         
         //3rd RowModel - Rating
         if let voteAverage = movieDetails.voteAverage{
-            self.voteAverage = voteAverage
-            rowModels.append(RatingDetailsTableViewCell.rowModel(model: voteAverage, delegate: self))
+            rowModels.append(RatingDetailsTableViewCell.rowModel(model: RatingDetails(movieRate: voteAverage, userRate: userRate), delegate:self))
         }
         
         
@@ -89,8 +89,8 @@ class MovieDetailsPresenter {
 }
 
 extension MovieDetailsPresenter: MovieDetailsPresentation {
-
-   
+    
+    
     func getMovieDetailsbyId(_ movieId: Int) {
         
         getMovieDetailsByIdFromWebService(movieId: movieId)
@@ -111,9 +111,10 @@ extension MovieDetailsPresenter: RatingDetailsCellDelegate{
     func didSelectRateButtonActions() {
         
         let ratingPopupViewController = RatingPopupRouter.setupModule()
-        ratingPopupViewController.movieId = movieId
-        ratingPopupViewController.voteAverage = voteAverage
+        ratingPopupViewController.movieDetails = movieDetails?.belongsToCollection
+        ratingPopupViewController.lastUserRating = userRate
         ratingPopupViewController.delegate = self
+        ratingPopupViewController.modalTransitionStyle = .crossDissolve
         router?.presentModel(viewController: ratingPopupViewController)
         
     }
@@ -122,6 +123,14 @@ extension MovieDetailsPresenter: RatingDetailsCellDelegate{
 extension MovieDetailsPresenter: RatingPopupViewControllerDelegate{
     
     func didDismissViewContollerWithRatingValue(_ rateValue: String) {
-        
+        if let mode = self.movieDetails{
+            if rateValue == "0"{
+                view?.showAletView(message: "Sorry, we are facing some issue, please try again later")
+            }
+            else{
+                userRate = rateValue
+                setUpMoviesDetailsRowModels(movieDetails: mode)
+            }
+        }
     }
 }

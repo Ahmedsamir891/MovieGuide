@@ -13,6 +13,8 @@ protocol ViperView: class {
     func showLoading()
     func hideLoading()
     
+    func showAletView(message: String)
+    
 }
 
 extension ViperView where Self: BaseViewController {
@@ -22,5 +24,9 @@ extension ViperView where Self: BaseViewController {
     
     func hideLoading() {
         ProgressIndicator.shared().hide()
+    }
+    
+    func showAletView(message: String){
+        showAlertWith(message: message)
     }
 }

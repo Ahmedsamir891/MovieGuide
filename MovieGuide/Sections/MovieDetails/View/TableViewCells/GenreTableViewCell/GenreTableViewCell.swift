@@ -51,7 +51,7 @@ class GenreTableViewCell: BaseTableViewCell {
     static func rowModel(model: [MovieGenre]) -> BaseRowModel {
         let rowModel = BaseRowModel()
         rowModel.rowCellIdentifier = "GenreTableViewCell"
-        rowModel.rowHeight = 50
+        rowModel.rowHeight = 70
         rowModel.rowValue = model
         return rowModel
     }

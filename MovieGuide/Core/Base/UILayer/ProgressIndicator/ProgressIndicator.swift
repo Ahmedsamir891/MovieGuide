@@ -16,12 +16,12 @@ import UIKit
     private var indicatorView: UIActivityIndicatorView?
     private var bgView: UIView?
     private var shouldShowFullScreen = false
-    var indicatorColor: UIColor = .black
+    var indicatorColor: UIColor = UIColor(red: 144/255, green: 206/255, blue: 161/255, alpha: 1.0)
     var bgColor: UIColor = .clear
     
     @objc static var sharedInstance: ProgressIndicator = {
         var sharedIndicator = ProgressIndicator()
-        sharedIndicator.size = 70
+        sharedIndicator.size = 30
         sharedIndicator.shouldShowFullScreen = true
         return sharedIndicator
     }()
