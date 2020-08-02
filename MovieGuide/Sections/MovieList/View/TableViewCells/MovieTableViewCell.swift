@@ -86,7 +86,6 @@ class MovieTableViewCell: BaseTableViewCell {
         
         if !sender.isSelected{
             sender.isSelected = true
-            print(selectedMovie.title!)
             selectedMovie.isFavorite = true
             MovieStateSaver.saveMovie(selectedMovie)
         }

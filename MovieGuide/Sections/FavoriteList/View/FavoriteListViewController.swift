@@ -39,8 +39,8 @@ extension FavoriteListViewController: FavoriteListView {
 
     
     func refreshTableView() {
+        NotificationCenter.default.post(name: .didRefreshList, object: nil)
         presenter?.viewWillAppear()
-        
     }
     
     func didGetFavoriteMoviesListRowModels(rowModels: [BaseRowModel], delegate: FavoriteListPresenter) {

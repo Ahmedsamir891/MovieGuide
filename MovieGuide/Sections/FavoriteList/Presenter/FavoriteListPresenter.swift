@@ -81,10 +81,4 @@ extension FavoriteListPresenter: MovieTableViewCellDelegate{
     func refreshTableView() {
         view?.refreshTableView()
     }
-    
-    
- 
- 
-    
-    
 }

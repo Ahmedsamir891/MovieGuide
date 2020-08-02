@@ -64,12 +64,7 @@ class NetworkManager  {
                     failureBlock(errorModel)
                     return
                 }
-                print()
-                
-                //                switch response.response?.status {
-                //
-                //                }
-                
+
                 if response.response?.status != .success
                 {
                     let errorModel = ErrorCodeConfiguration()

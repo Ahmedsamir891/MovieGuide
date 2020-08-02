@@ -8,23 +8,6 @@
 
 import Foundation
 
-extension Date {
-    
-    static func getFormattedDate(string: String , formatter:String, format: String,locale:Locale? = Locale(identifier: "en_US")) -> String{
-        let dateFormatterGet = DateFormatter()
-        dateFormatterGet.dateFormat = "yyyy-MM-dd"
-        
-        let dateFormatterPrint = DateFormatter()
-        dateFormatterPrint.dateFormat = format
-        if let locale = locale {
-            dateFormatterPrint.locale = locale
-        }
-        let date: Date? = dateFormatterGet.date(from: string)
-        return dateFormatterPrint.string(from: date!);
-    }
-    
-}
-
 // MARK: - Enums
 public extension Date {
     

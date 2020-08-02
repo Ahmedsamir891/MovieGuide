@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 
+
 class MovieListViewController: BaseViewController {
     
     @IBOutlet var moviesListTableView: UITableView!
@@ -26,13 +27,29 @@ class MovieListViewController: BaseViewController {
         DispatchQueue.main.async {
             self.presenter?.viewDidLoad()
         }
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(refreshMovieList), name: .didRefreshList, object: nil)
     }
+    
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
     
     //MARK:- helper methods
     
     func setUpViewUI(){
         moviesListTableView.registerCellFromNib(MovieTableViewCell.self, withIdentifier: String(describing: MovieTableViewCell.self))
     }
+    
+    //MARK:- Observer
+    
+    @objc func refreshMovieList(){
+        moviesListTableView.reloadData()
+    }
+    
+    
 }
 
 extension MovieListViewController: MovieListView {
