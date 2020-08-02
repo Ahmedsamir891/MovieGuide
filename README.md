@@ -1,5 +1,5 @@
 # MovieGuide
-Demo application to allow users to discover now plyaing movies and movies details and add movies to favorite and rate a moive.
+Demo application to allow users to discover now plyaing movies and movies details and add movies to favorite and rate a movie.
 
 
 ![](list.png) ![](favorite.png) ![](details.png) ![](rating.png)
